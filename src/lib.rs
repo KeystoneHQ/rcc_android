@@ -11,8 +11,6 @@ use rcc_signer::{Signer, SigningAlgorithm};
 pub use crate::java_glue::*;
 use rifgen::rifgen_attr::*;
 
-
-
 pub struct RCC;
 
 impl RCC {
