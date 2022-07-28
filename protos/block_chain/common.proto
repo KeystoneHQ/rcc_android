@@ -1,0 +1,6 @@
+syntax = "proto3";
+package abi;
+
+message ParseTransaction {
+  string data = 1;
+}

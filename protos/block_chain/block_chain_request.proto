@@ -1,0 +1,12 @@
+syntax = "proto3";
+package abi;
+
+import 'solana.proto';
+
+message BlockChainRequest {
+  oneof chain {
+    Solana solana = 1;
+  }
+}
+
+
