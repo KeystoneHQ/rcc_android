@@ -25,9 +25,7 @@ impl RCC {
             Some(RequestData::SignRequest(params)) => {
                 crate::processors::sign_request::process(params)
             }
-            Some(RequestData::BlockChainRequest(params)) => {
-                
-            }
+            Some(RequestData::BlockChainRequest(params)) => {}
             None => {
                 CommandResponse::error(command.request_id, "Request is not supported".to_string())
             }

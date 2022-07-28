@@ -20,8 +20,11 @@ fn main() {
     }
     fs::create_dir(java_folder).unwrap();
     let swig_gen = flapigen::Generator::new(LanguageConfig::JavaConfig(
-        JavaConfig::new(java_folder.into(), "com.keystone.cold.cryptocore.lib".into())
-            .use_null_annotation_from_package("androidx.annotation".into()),
+        JavaConfig::new(
+            java_folder.into(),
+            "com.keystone.cold.cryptocore.lib".into(),
+        )
+        .use_null_annotation_from_package("androidx.annotation".into()),
     ))
     .rustfmt_bindings(true);
     swig_gen.expand("android bindings", &in_src, &out_src);

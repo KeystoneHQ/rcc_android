@@ -1,5 +1,5 @@
-use rcc_signer::{Signer, SigningAlgorithm};
 use crate::{CommandResponse, SignRequest};
+use rcc_signer::{Signer, SigningAlgorithm};
 
 pub fn process(params: SignRequest) -> CommandResponse {
     let signer = Signer::new_with_se(params.port_name);
@@ -16,10 +16,7 @@ pub fn process(params: SignRequest) -> CommandResponse {
     let algo = match params.algo {
         0 => SigningAlgorithm::Secp256k1,
         _ => {
-            return CommandResponse::error(
-                command.request_id,
-                "Algo is not supported".to_string(),
-            )
+            return CommandResponse::error(command.request_id, "Algo is not supported".to_string())
         }
     };
 
@@ -30,9 +27,7 @@ pub fn process(params: SignRequest) -> CommandResponse {
         algo,
         params.derivation_path,
     ) {
-        Ok(signature) => {
-            CommandResponse::success(command.request_id, hex::encode(signature))
-        }
+        Ok(signature) => CommandResponse::success(command.request_id, hex::encode(signature)),
         Err(err) => CommandResponse::error(command.request_id, err.to_string()),
     }
 }
