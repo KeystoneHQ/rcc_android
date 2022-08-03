@@ -26,7 +26,7 @@ impl RCC {
                 self.sign(command.request_id, params)
             }
             Some(RequestData::BlockChainRequest(params)) => {
-                Self.parse(command.request_id, params)
+                self.parse(command.request_id, params)
             }
             None => {
                 CommandResponse::error(command.request_id, "Request is not supported".to_string())
