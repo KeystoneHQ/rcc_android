@@ -1,0 +1,18 @@
+syntax = "proto3";
+package abi;
+
+
+option java_package = "com.keystone.cold.cryptocore";
+option java_outer_classname = "BlockChainRequestProtoc";
+
+import "solana.proto";
+import "near.proto";
+
+message BlockChainRequest {
+  oneof chain {
+    Solana solana = 1;
+    Near near = 2;
+  }
+}
+
+

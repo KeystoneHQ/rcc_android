@@ -23,12 +23,32 @@ impl RCC {
     fn excute(&mut self, command: CommandRequest) -> CommandResponse {
         match command.request_data {
             Some(RequestData::SignRequest(params)) => {
-                crate::processors::sign_request::process(params)
+                self.sign(command.request_id, params)
             }
-            Some(RequestData::BlockChainRequest(params)) => {}
+            Some(RequestData::BlockChainRequest(params)) => {
+                Self.parse(command.request_id, params)
+            }
             None => {
                 CommandResponse::error(command.request_id, "Request is not supported".to_string())
             }
+        }
+    }
+
+    fn parse(&self, request_id: u32, params: BlockChainRequest) -> CommandResponse {
+        match processors::block_chain::process(params) {
+            Ok(data) =>
+                CommandResponse::success(request_id, data),
+            Err(e) =>
+                CommandResponse::error(request_id, e.to_string())
+        }
+    }
+
+    fn sign(&self, request_id: u32, params: SignRequest) -> CommandResponse {
+        match processors::sign_request::process(params) {
+            Ok(data) =>
+                CommandResponse::success(request_id, data),
+            Err(e) =>
+                CommandResponse::error(request_id, e.to_string())
         }
     }
 
