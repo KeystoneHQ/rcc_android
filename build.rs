@@ -6,7 +6,7 @@ use std::{env, fs};
 fn main() {
     prost_build::Config::new()
         .out_dir("src/pb")
-        .compile_protos(&["abi.proto"], &["./protos", "./protos/block_chain"])
+        .compile_protos(&["abi.proto"], &["./protos"])
         .unwrap();
 
     let out_dir = env::var("OUT_DIR").unwrap();
