@@ -1,0 +1,15 @@
+syntax = "proto3";
+package abi;
+
+import 'common.proto';
+
+message Solana {
+  oneof method {
+    ParseTransaction parse_transaction = 1;
+    VerifyMessage verify_message = 2;
+  }
+}
+
+message VerifyMessage {
+  string data = 1;
+}

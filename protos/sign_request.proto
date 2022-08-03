@@ -1,0 +1,17 @@
+syntax = "proto3";
+package abi;
+
+message SignRequest {
+  uint32 seed_id = 1;
+  enum SignAlgo {
+    secp256k1 = 0;
+    secp256R1 = 1;
+    ed25519 = 2;
+    rsa = 3;
+  }
+  SignAlgo algo = 2;
+  string password = 3;
+  string data = 4;
+  string derivation_path = 5;
+  string port_name = 6;
+}

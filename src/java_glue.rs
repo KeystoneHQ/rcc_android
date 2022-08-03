@@ -9,6 +9,6 @@
     clippy::trivially_copy_pass_by_ref,
     clippy::let_unit_value,
     clippy::clone_on_copy
-    )]
-        
+)]
+
 include!(concat!(env!("OUT_DIR"), "/java_glue.rs"));
