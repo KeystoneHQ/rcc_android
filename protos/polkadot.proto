@@ -1,0 +1,31 @@
+syntax = "proto3";
+package abi;
+
+option java_package = "com.keystone.cold.cryptocore";
+option java_outer_classname = "PolkadotProtoc";
+
+message Polkadot {
+  oneof method {
+    ParsePolkadotTransaction parse_transaction = 1;
+    InitialPolkadotDB init_polkadot_db = 2;
+    GetPacketsTotal get_packets_total = 3;
+    DecodeSequence decode_sequence = 4;
+  }
+}
+
+message ParsePolkadotTransaction {
+  string transaction_data = 1;
+  string db_path = 2;
+}
+
+message InitialPolkadotDB {
+  string db_path = 1;
+}
+
+message GetPacketsTotal {
+  string payload = 1;
+}
+
+message DecodeSequence {
+  repeated string payload = 1;
+}
