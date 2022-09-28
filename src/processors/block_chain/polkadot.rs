@@ -19,6 +19,15 @@ pub fn process(data: Polkadot) -> Result<String, ParseError> {
         Some(Method::DecodeSequence(data)) => {
             Ok(rcc_polkadot::scanner::decode_sequence(data.payload))
         }
+        Some(Method::HandleStub(data)) => {
+            Ok(rcc_polkadot::handle_stub(data.db_path, data.checksum))
+        }
+        Some(Method::ImportAddress(data)) => {
+            Ok(rcc_polkadot::import_address(data.db_path, data.public_key, data.derivation_path))
+        }
+        Some(Method::GetSignContent(data)) => {
+            Ok(rcc_polkadot::get_sign_content(data.db_path, data.checksum))
+        }
         None => {
             Err(ChainParseError(format!("Polkadot") , format!("Invalid data")))
         }

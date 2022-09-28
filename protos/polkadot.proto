@@ -10,6 +10,9 @@ message Polkadot {
     InitialPolkadotDB init_polkadot_db = 2;
     GetPacketsTotal get_packets_total = 3;
     DecodeSequence decode_sequence = 4;
+    HandleStub handle_stub = 5;
+    ImportAddress import_address = 6;
+    GetSignContent get_sign_content = 7;
   }
 }
 
@@ -28,4 +31,20 @@ message GetPacketsTotal {
 
 message DecodeSequence {
   repeated string payload = 1;
+}
+
+message HandleStub {
+  string db_path = 1;
+  uint32 checksum = 2;
+}
+
+message ImportAddress {
+  string db_path = 1;
+  string public_key = 2;
+  string derivation_path = 3;
+}
+
+message GetSignContent {
+  string db_path = 1;
+  uint32 checksum = 2;
 }
