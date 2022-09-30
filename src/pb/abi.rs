@@ -63,8 +63,78 @@ pub mod near {
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Polkadot {
+    #[prost(oneof="polkadot::Method", tags="1, 2, 3, 4, 5, 6, 7")]
+    pub method: ::core::option::Option<polkadot::Method>,
+}
+/// Nested message and enum types in `Polkadot`.
+pub mod polkadot {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Method {
+        #[prost(message, tag="1")]
+        ParseTransaction(super::ParsePolkadotTransaction),
+        #[prost(message, tag="2")]
+        InitPolkadotDb(super::InitialPolkadotDb),
+        #[prost(message, tag="3")]
+        GetPacketsTotal(super::GetPacketsTotal),
+        #[prost(message, tag="4")]
+        DecodeSequence(super::DecodeSequence),
+        #[prost(message, tag="5")]
+        HandleStub(super::HandleStub),
+        #[prost(message, tag="6")]
+        ImportAddress(super::ImportAddress),
+        #[prost(message, tag="7")]
+        GetSignContent(super::GetSignContent),
+    }
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ParsePolkadotTransaction {
+    #[prost(string, tag="1")]
+    pub transaction_data: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub db_path: ::prost::alloc::string::String,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InitialPolkadotDb {
+    #[prost(string, tag="1")]
+    pub db_path: ::prost::alloc::string::String,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetPacketsTotal {
+    #[prost(string, tag="1")]
+    pub payload: ::prost::alloc::string::String,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DecodeSequence {
+    #[prost(string, repeated, tag="1")]
+    pub payload: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct HandleStub {
+    #[prost(string, tag="1")]
+    pub db_path: ::prost::alloc::string::String,
+    #[prost(uint32, tag="2")]
+    pub checksum: u32,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImportAddress {
+    #[prost(string, tag="1")]
+    pub db_path: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub public_key: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub derivation_path: ::prost::alloc::string::String,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetSignContent {
+    #[prost(string, tag="1")]
+    pub db_path: ::prost::alloc::string::String,
+    #[prost(uint32, tag="2")]
+    pub checksum: u32,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BlockChainRequest {
-    #[prost(oneof="block_chain_request::Chain", tags="1, 2")]
+    #[prost(oneof="block_chain_request::Chain", tags="1, 2, 3")]
     pub chain: ::core::option::Option<block_chain_request::Chain>,
 }
 /// Nested message and enum types in `BlockChainRequest`.
@@ -75,6 +145,8 @@ pub mod block_chain_request {
         Solana(super::Solana),
         #[prost(message, tag="2")]
         Near(super::Near),
+        #[prost(message, tag="3")]
+        Polkadot(super::Polkadot),
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]

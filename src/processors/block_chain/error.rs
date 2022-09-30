@@ -6,4 +6,6 @@ pub enum ParseError {
     NearParseError(String),
     #[error("solana parse failed, reason: `{0}`")]
     SolanaParseError(String),
+    #[error("`{0}` parse failed, reason: `{1}`")]
+    ChainParseError(String, String),
 }

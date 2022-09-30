@@ -7,11 +7,13 @@ option java_outer_classname = "BlockChainRequestProtoc";
 
 import "solana.proto";
 import "near.proto";
+import "polkadot.proto";
 
 message BlockChainRequest {
   oneof chain {
     Solana solana = 1;
     Near near = 2;
+    Polkadot polkadot = 3;
   }
 }
 

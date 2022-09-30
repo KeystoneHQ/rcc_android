@@ -27,6 +27,11 @@ android_logger="*"
 rifgen="*"
 jni-sys="*"
 
+[dependencies.rcc_polkadot]
+git = "ssh://git@github.com/KeystoneHQ/rust-crypto-core.git"
+branch = "polkadot-support"
+
+
 [build-dependencies]
 prost-build = "0.8"
 flapigen = "0.6.0-pre9"
