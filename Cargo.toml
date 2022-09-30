@@ -18,7 +18,7 @@ thiserror="1.0"
 rcc-near="0.1.1"
 rcc-trait-chain="0.1.0"
 rcc-solana = "0.3.1"
-
+rcc_polkadot = {git = "ssh://git@github.com/KeystoneHQ/rust-crypto-core.git", tag = "rcc_polkadot@0.1.1"}
 #logging
 log="*"
 log-panics = "*"
@@ -26,11 +26,6 @@ android_logger="*"
 
 rifgen="*"
 jni-sys="*"
-
-[dependencies.rcc_polkadot]
-git = "ssh://git@github.com/KeystoneHQ/rust-crypto-core.git"
-branch = "polkadot-support"
-
 
 [build-dependencies]
 prost-build = "0.8"
