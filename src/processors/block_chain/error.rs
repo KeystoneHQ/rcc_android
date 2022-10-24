@@ -8,4 +8,6 @@ pub enum ParseError {
     SolanaParseError(String),
     #[error("`{0}` parse failed, reason: `{1}`")]
     ChainParseError(String, String),
+    #[error("aptos parse failed, reason: `{0}`")]
+    AptosParseError(String),
 }
