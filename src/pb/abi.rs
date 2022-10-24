@@ -133,8 +133,21 @@ pub struct GetSignContent {
     pub checksum: u32,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Aptos {
+    #[prost(oneof="aptos::Method", tags="1")]
+    pub method: ::core::option::Option<aptos::Method>,
+}
+/// Nested message and enum types in `Aptos`.
+pub mod aptos {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Method {
+        #[prost(message, tag="1")]
+        ParseTransaction(super::ParseTransaction),
+    }
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BlockChainRequest {
-    #[prost(oneof="block_chain_request::Chain", tags="1, 2, 3")]
+    #[prost(oneof="block_chain_request::Chain", tags="1, 2, 3, 4")]
     pub chain: ::core::option::Option<block_chain_request::Chain>,
 }
 /// Nested message and enum types in `BlockChainRequest`.
@@ -147,6 +160,8 @@ pub mod block_chain_request {
         Near(super::Near),
         #[prost(message, tag="3")]
         Polkadot(super::Polkadot),
+        #[prost(message, tag="4")]
+        Aptos(super::Aptos),
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]

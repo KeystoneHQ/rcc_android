@@ -1,0 +1,13 @@
+syntax = "proto3";
+package abi;
+
+option java_package = "com.keystone.cold.cryptocore";
+option java_outer_classname = "AptosProtoc";
+
+import 'common.proto';
+
+message Aptos {
+  oneof method {
+    ParseTransaction parse_transaction = 1;
+  }
+}
