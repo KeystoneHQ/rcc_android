@@ -12,7 +12,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 prost = "0.8"
-rcc_signer = "0.1.1"
+#rcc_signer = "0.1.1"
 hex = "0.4.3"
 thiserror="1.0"
 rcc-near="0.1.1"
@@ -33,3 +33,7 @@ jni-sys="*"
 prost-build = "0.8"
 flapigen = "0.6.0-pre9"
 rifgen = "*"
+
+[dependencies.rcc_signer]
+git = "ssh://git@github.com/KeystoneHQ/rust-crypto-core.git"
+branch = "arweave-signer"

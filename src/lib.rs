@@ -25,6 +25,9 @@ impl RCC {
             Some(RequestData::SignRequest(params)) => {
                 self.sign(command.request_id, params)
             }
+            Some(RequestData::GetRsaPublicKeyRequest(params)) => {
+                self.get_rsa_public_key(command.request_id, params)
+            }
             Some(RequestData::BlockChainRequest(params)) => {
                 self.parse(command.request_id, params)
             }
@@ -45,6 +48,15 @@ impl RCC {
 
     fn sign(&self, request_id: u32, params: SignRequest) -> CommandResponse {
         match processors::sign_request::process(params) {
+            Ok(data) =>
+                CommandResponse::success(request_id, data),
+            Err(e) =>
+                CommandResponse::error(request_id, e.to_string())
+        }
+    }
+
+    fn get_rsa_public_key(&self, request_id: u32, params: GetRsaPublicKeyRequest) -> CommandResponse {
+        match processors::get_rsa_public_key_request::process(params) {
             Ok(data) =>
                 CommandResponse::success(request_id, data),
             Err(e) =>

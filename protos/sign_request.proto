@@ -17,4 +17,5 @@ message SignRequest {
   string data = 4;
   string derivation_path = 5;
   string port_name = 6;
+  map<string, string> signing_option = 7;
 }
