@@ -10,4 +10,6 @@ pub enum ParseError {
     ChainParseError(String, String),
     #[error("aptos parse failed, reason: `{0}`")]
     AptosParseError(String),
+    #[error("cosmos parse failed, reason: `{0}`")]
+    CosmosParseError(String),
 }

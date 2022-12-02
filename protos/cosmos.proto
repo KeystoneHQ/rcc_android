@@ -1,0 +1,13 @@
+syntax = "proto3";
+package abi;
+
+option java_package = "com.keystone.cold.cryptocore";
+option java_outer_classname = "CosmosProtoc";
+
+import 'common.proto';
+
+message Cosmos {
+  oneof method {
+    ParseTransaction parse_transaction = 1;
+  }
+}

@@ -9,6 +9,7 @@ import "solana.proto";
 import "near.proto";
 import "polkadot.proto";
 import "aptos.proto";
+import "cosmos.proto";
 
 message BlockChainRequest {
   oneof chain {
@@ -16,6 +17,7 @@ message BlockChainRequest {
     Near near = 2;
     Polkadot polkadot = 3;
     Aptos aptos = 4;
+    Cosmos cosmos = 5;
   }
 }
 
