@@ -146,8 +146,21 @@ pub mod aptos {
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Cosmos {
+    #[prost(oneof="cosmos::Method", tags="1")]
+    pub method: ::core::option::Option<cosmos::Method>,
+}
+/// Nested message and enum types in `Cosmos`.
+pub mod cosmos {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Method {
+        #[prost(message, tag="1")]
+        ParseTransaction(super::ParseTransaction),
+    }
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BlockChainRequest {
-    #[prost(oneof="block_chain_request::Chain", tags="1, 2, 3, 4")]
+    #[prost(oneof="block_chain_request::Chain", tags="1, 2, 3, 4, 5")]
     pub chain: ::core::option::Option<block_chain_request::Chain>,
 }
 /// Nested message and enum types in `BlockChainRequest`.
@@ -162,6 +175,8 @@ pub mod block_chain_request {
         Polkadot(super::Polkadot),
         #[prost(message, tag="4")]
         Aptos(super::Aptos),
+        #[prost(message, tag="5")]
+        Cosmos(super::Cosmos),
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
