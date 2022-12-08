@@ -5,12 +5,14 @@ option java_outer_classname = "RCCABIProtoc";
 
 import 'sign_request.proto';
 import 'block_chain_request.proto';
+import 'get_rsa_public_key.proto';
 
 message CommandRequest {
     uint32 request_id = 1;
     oneof request_data {
         SignRequest sign_request = 2;
         BlockChainRequest block_chain_request = 3;
+        GetRSAPublicKey get_rsa_public_key = 4;
     }
 }
 

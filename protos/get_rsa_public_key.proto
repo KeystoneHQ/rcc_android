@@ -1,0 +1,11 @@
+syntax = "proto3";
+package abi;
+
+option java_package = "com.keystone.cold.cryptocore";
+option java_outer_classname = "GetRSAPublicKeyProtoc";
+
+message GetRSAPublicKey {
+  uint32 seed_id = 1;
+  string password = 2;
+  string port_name = 3;
+}

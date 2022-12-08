@@ -1,7 +1,7 @@
 use thiserror::Error;
 
 #[derive(Error, Debug)]
-pub enum SignError {
+pub enum SignerError {
     #[error("error info : `{0}`")]
     DecodeHexError(String),
 
@@ -10,4 +10,7 @@ pub enum SignError {
 
     #[error("error info : `{0}`")]
     SignFailed(String),
+
+    #[error("error info : `{0}`")]
+    RSAPublicKeyError(String),
 }

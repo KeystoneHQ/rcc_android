@@ -12,7 +12,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 prost = "0.8"
-rcc_signer = "0.1.1"
+rcc_signer = {path = "/Users/sora/keystone/rust-crypto-core/signer"}
 hex = "0.4.3"
 thiserror="1.0"
 rcc-near="0.1.1"
