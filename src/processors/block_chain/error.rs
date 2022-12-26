@@ -12,4 +12,6 @@ pub enum ParseError {
     AptosParseError(String),
     #[error("cosmos parse failed, reason: `{0}`")]
     CosmosParseError(String),
+    #[error("arweave parse failed, reason: `{0}`")]
+    ArweaveParseError(String),
 }

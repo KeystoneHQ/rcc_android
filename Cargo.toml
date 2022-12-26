@@ -21,6 +21,7 @@ rcc-solana = "0.3.1"
 rcc_polkadot = {git = "ssh://git@github.com/KeystoneHQ/rust-crypto-core.git", tag = "rcc_polkadot@0.1.1"}
 rcc-aptos = "0.1.0"
 rcc-cosmos = "0.1.0"
+rcc-arweave = {git = "ssh://git@github.com/KeystoneHQ/rust-crypto-core.git", branch = "arweave"}
 #logging
 log="*"
 log-panics = "*"

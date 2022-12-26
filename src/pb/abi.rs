@@ -161,8 +161,21 @@ pub mod cosmos {
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Arweave {
+    #[prost(oneof="arweave::Method", tags="1")]
+    pub method: ::core::option::Option<arweave::Method>,
+}
+/// Nested message and enum types in `Arweave`.
+pub mod arweave {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Method {
+        #[prost(message, tag="1")]
+        ParseTransaction(super::ParseTransaction),
+    }
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BlockChainRequest {
-    #[prost(oneof="block_chain_request::Chain", tags="1, 2, 3, 4, 5")]
+    #[prost(oneof="block_chain_request::Chain", tags="1, 2, 3, 4, 5, 6")]
     pub chain: ::core::option::Option<block_chain_request::Chain>,
 }
 /// Nested message and enum types in `BlockChainRequest`.
@@ -179,6 +192,8 @@ pub mod block_chain_request {
         Aptos(super::Aptos),
         #[prost(message, tag="5")]
         Cosmos(super::Cosmos),
+        #[prost(message, tag="6")]
+        Arweave(super::Arweave),
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]

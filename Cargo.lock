@@ -3057,6 +3057,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "rcc-arweave"
+version = "0.0.1"
+source = "git+ssh://git@github.com/KeystoneHQ/rust-crypto-core.git?branch=arweave#e1810f189c849d80aa1a7dc39e81f43268844973"
+dependencies = [
+ "base64 0.13.1",
+ "hex",
+ "rcc-trait-chain",
+ "ring",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
 name = "rcc-cosmos"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3128,6 +3142,7 @@ dependencies = [
  "prost 0.8.0",
  "prost-build",
  "rcc-aptos",
+ "rcc-arweave",
  "rcc-cosmos",
  "rcc-near",
  "rcc-solana",
@@ -3597,6 +3612,7 @@ version = "1.0.85"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e55a28e3aaef9d5ce0506d0a14dbba8054ddc7e499ef522dd8b26859ec9d4a44"
 dependencies = [
+ "indexmap",
  "itoa 1.0.3",
  "ryu",
  "serde",
