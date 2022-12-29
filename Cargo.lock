@@ -3058,8 +3058,8 @@ dependencies = [
 
 [[package]]
 name = "rcc-arweave"
-version = "0.0.1"
-source = "git+ssh://git@github.com/KeystoneHQ/rust-crypto-core.git?branch=arweave#e1810f189c849d80aa1a7dc39e81f43268844973"
+version = "0.1.0"
+source = "git+ssh://git@github.com/KeystoneHQ/rust-crypto-core.git?tag=rcc-arweave@0.1.0#207c83539c05cf35bb25b8e82888c4095854efdc"
 dependencies = [
  "base64 0.13.1",
  "hex",
@@ -3171,8 +3171,8 @@ dependencies = [
 
 [[package]]
 name = "rcc_signer"
-version = "0.1.1"
-source = "git+ssh://git@github.com/KeystoneHQ/rust-crypto-core.git?branch=arweave-signer#548493dd8d157df4570bb5c2625e5f77f22b1dc5"
+version = "0.2.0"
+source = "git+ssh://git@github.com/KeystoneHQ/rust-crypto-core.git?tag=rcc_signer@0.2.0#207c83539c05cf35bb25b8e82888c4095854efdc"
 dependencies = [
  "base64 0.3.1",
  "bs58",
