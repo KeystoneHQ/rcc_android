@@ -284,7 +284,7 @@ pub struct GetAdaExtendedPublicKeyRequest {
     #[prost(uint32, tag="1")]
     pub seed_id: u32,
     #[prost(string, tag="2")]
-    pub token: ::prost::alloc::string::String,
+    pub password: ::prost::alloc::string::String,
     #[prost(string, tag="3")]
     pub path: ::prost::alloc::string::String,
     #[prost(string, tag="4")]

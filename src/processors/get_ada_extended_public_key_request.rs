@@ -7,7 +7,7 @@ pub fn process(params: GetAdaExtendedPublicKeyRequest) -> Result<String, ADAKeyE
 
     match signer.get_ada_extended_public_key(
         params.seed_id as u8,
-        params.token,
+        params.password,
         params.path,
     ) {
         Ok(result) => Ok(result),

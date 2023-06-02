@@ -20,7 +20,7 @@ impl RCC {
         RCC {}
     }
 
-    fn excute(&mut self, command: CommandRequest) -> CommandResponse {
+    fn execute(&mut self, command: CommandRequest) -> CommandResponse {
         match command.request_data {
             Some(RequestData::SignRequest(params)) => {
                 self.sign(command.request_id, params)
@@ -118,7 +118,7 @@ impl RCC {
                 return self.deserialize_to_string(cp);
             }
         }
-        let cp = self.excute(cmd);
+        let cp = self.execute(cmd);
         self.deserialize_to_string(cp)
     }
 }
