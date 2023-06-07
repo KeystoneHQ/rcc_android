@@ -1,3 +1,5 @@
+use hex::FromHexError;
+use rcc_cardano::errors::CardanoError;
 use thiserror::Error;
 
 #[derive(Error, Debug)]
@@ -14,4 +16,20 @@ pub enum ParseError {
     CosmosParseError(String),
     #[error("arweave parse failed, reason: `{0}`")]
     ArweaveParseError(String),
+    #[error("cardano parse failed, reason: `{0}`")]
+    CardanoParseError(String),
+    #[error("invalid hex text, reason: `{0}`")]
+    HexEncodingError(String),
+}
+
+impl From<FromHexError> for ParseError {
+    fn from(value: FromHexError) -> Self {
+        ParseError::HexEncodingError(value.to_string())
+    }
+}
+
+impl From<CardanoError> for ParseError {
+    fn from(value: CardanoError) -> Self {
+        ParseError::CardanoParseError(value.to_string())
+    }
 }

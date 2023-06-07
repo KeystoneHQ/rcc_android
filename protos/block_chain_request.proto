@@ -11,6 +11,7 @@ import "polkadot.proto";
 import "aptos.proto";
 import "cosmos.proto";
 import "arweave.proto";
+import "cardano.proto";
 
 message BlockChainRequest {
   oneof chain {
@@ -20,6 +21,7 @@ message BlockChainRequest {
     Aptos aptos = 4;
     Cosmos cosmos = 5;
     Arweave arweave = 6;
+    Cardano cardano = 7;
   }
 }
 

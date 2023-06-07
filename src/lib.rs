@@ -20,7 +20,7 @@ impl RCC {
         RCC {}
     }
 
-    fn excute(&mut self, command: CommandRequest) -> CommandResponse {
+    fn execute(&mut self, command: CommandRequest) -> CommandResponse {
         match command.request_data {
             Some(RequestData::SignRequest(params)) => {
                 self.sign(command.request_id, params)
@@ -30,6 +30,12 @@ impl RCC {
             }
             Some(RequestData::BlockChainRequest(params)) => {
                 self.parse(command.request_id, params)
+            }
+            Some(RequestData::SetupAdaRootKeyRequest(params)) => {
+                self.setup_ada_root_key(command.request_id, params)
+            }
+            Some(RequestData::GetAdaExtendedPublicKeyRequest(params)) => {
+                self.get_ada_extended_public_key(command.request_id, params)
             }
             None => {
                 CommandResponse::error(command.request_id, "Request is not supported".to_string())
@@ -61,6 +67,22 @@ impl RCC {
                 CommandResponse::success(request_id, data),
             Err(e) =>
                 CommandResponse::error(request_id, e.to_string())
+        }
+    }
+
+    fn setup_ada_root_key(&self, request_id: u32, params: SetupAdaRootKeyRequest) -> CommandResponse {
+        match processors::setup_ada_root_key_request::process(params) {
+            Ok(data) =>
+                CommandResponse::success(request_id, "".to_string()),
+            Err(e) =>
+                CommandResponse::error(request_id, e.to_string())
+        }
+    }
+
+    fn get_ada_extended_public_key(&self, request_id: u32, params: GetAdaExtendedPublicKeyRequest) -> CommandResponse {
+        match processors::get_ada_extended_public_key_request::process(params) {
+            Ok(xpub) => CommandResponse::success(request_id, xpub),
+            Err(e) => CommandResponse::error(request_id, e.to_string())
         }
     }
 
@@ -96,7 +118,7 @@ impl RCC {
                 return self.deserialize_to_string(cp);
             }
         }
-        let cp = self.excute(cmd);
+        let cp = self.execute(cmd);
         self.deserialize_to_string(cp)
     }
 }

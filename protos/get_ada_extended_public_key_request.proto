@@ -1,0 +1,12 @@
+syntax = "proto3";
+package abi;
+
+option java_package = "com.keystone.cold.cryptocore";
+option java_outer_classname = "GetADAExtendedPublicKeyRequestProtoc";
+
+message GetADAExtendedPublicKeyRequest {
+  uint32 seed_id = 1;
+  string password = 2;
+  string path = 3;
+  string port_name = 4;
+}

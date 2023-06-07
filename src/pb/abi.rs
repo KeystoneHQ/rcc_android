@@ -174,8 +174,69 @@ pub mod arweave {
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Cardano {
+    #[prost(oneof="cardano::Method", tags="1, 2")]
+    pub method: ::core::option::Option<cardano::Method>,
+}
+/// Nested message and enum types in `Cardano`.
+pub mod cardano {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Method {
+        #[prost(message, tag="1")]
+        ParseTransaction(super::ParseCardanoTransaction),
+        #[prost(message, tag="2")]
+        GenerateAddress(super::GenerateAddress),
+    }
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ParseCardanoTransaction {
+    #[prost(string, tag="1")]
+    pub data: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub xpub: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub master_fingerprint: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag="4")]
+    pub utxos: ::prost::alloc::vec::Vec<CardanoUtxo>,
+    #[prost(message, repeated, tag="5")]
+    pub cert_keys: ::prost::alloc::vec::Vec<CardanoCertKey>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CardanoUtxo {
+    #[prost(string, tag="1")]
+    pub master_fingerprint: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub address: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub path: ::prost::alloc::string::String,
+    #[prost(uint64, tag="4")]
+    pub value: u64,
+    #[prost(string, tag="5")]
+    pub transaction_hash: ::prost::alloc::string::String,
+    #[prost(uint32, tag="6")]
+    pub index: u32,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CardanoCertKey {
+    #[prost(string, tag="1")]
+    pub master_fingerprint: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub key_hash: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub path: ::prost::alloc::string::String,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenerateAddress {
+    #[prost(string, tag="1")]
+    pub xpub: ::prost::alloc::string::String,
+    #[prost(uint32, tag="2")]
+    pub index: u32,
+    #[prost(uint32, tag="3")]
+    pub t: u32,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BlockChainRequest {
-    #[prost(oneof="block_chain_request::Chain", tags="1, 2, 3, 4, 5, 6")]
+    #[prost(oneof="block_chain_request::Chain", tags="1, 2, 3, 4, 5, 6, 7")]
     pub chain: ::core::option::Option<block_chain_request::Chain>,
 }
 /// Nested message and enum types in `BlockChainRequest`.
@@ -194,6 +255,8 @@ pub mod block_chain_request {
         Cosmos(super::Cosmos),
         #[prost(message, tag="6")]
         Arweave(super::Arweave),
+        #[prost(message, tag="7")]
+        Cardano(super::Cardano),
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -206,10 +269,32 @@ pub struct GetRsaPublicKeyRequest {
     pub port_name: ::prost::alloc::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SetupAdaRootKeyRequest {
+    #[prost(uint32, tag="1")]
+    pub seed_id: u32,
+    #[prost(string, tag="2")]
+    pub password: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub passphrase: ::prost::alloc::string::String,
+    #[prost(string, tag="4")]
+    pub port_name: ::prost::alloc::string::String,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetAdaExtendedPublicKeyRequest {
+    #[prost(uint32, tag="1")]
+    pub seed_id: u32,
+    #[prost(string, tag="2")]
+    pub password: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub path: ::prost::alloc::string::String,
+    #[prost(string, tag="4")]
+    pub port_name: ::prost::alloc::string::String,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommandRequest {
     #[prost(uint32, tag="1")]
     pub request_id: u32,
-    #[prost(oneof="command_request::RequestData", tags="2, 3, 4")]
+    #[prost(oneof="command_request::RequestData", tags="2, 3, 4, 5, 6")]
     pub request_data: ::core::option::Option<command_request::RequestData>,
 }
 /// Nested message and enum types in `CommandRequest`.
@@ -222,6 +307,10 @@ pub mod command_request {
         BlockChainRequest(super::BlockChainRequest),
         #[prost(message, tag="4")]
         GetRsaPublicKeyRequest(super::GetRsaPublicKeyRequest),
+        #[prost(message, tag="5")]
+        SetupAdaRootKeyRequest(super::SetupAdaRootKeyRequest),
+        #[prost(message, tag="6")]
+        GetAdaExtendedPublicKeyRequest(super::GetAdaExtendedPublicKeyRequest),
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]

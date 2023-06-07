@@ -1,0 +1,41 @@
+syntax = "proto3";
+package abi;
+
+option java_package = "com.keystone.cold.cryptocore";
+option java_outer_classname = "CardanoProtoc";
+
+message Cardano {
+  oneof method {
+    ParseCardanoTransaction parse_transaction = 1;
+    GenerateAddress generate_address = 2;
+  }
+}
+
+message ParseCardanoTransaction {
+  string data = 1;
+  string xpub = 2;
+  string master_fingerprint = 3;
+  repeated CardanoUtxo utxos = 4;
+  repeated CardanoCertKey cert_keys = 5;
+}
+
+message CardanoUtxo {
+  string master_fingerprint = 1;
+  string address = 2;
+  string path = 3;
+  uint64 value = 4;
+  string transaction_hash = 5;
+  uint32 index = 6;
+}
+
+message CardanoCertKey {
+  string master_fingerprint = 1;
+  string key_hash = 2;
+  string path = 3;
+}
+
+message GenerateAddress {
+  string xpub = 1;
+  uint32 index = 2;
+  uint32 t = 3;
+}
