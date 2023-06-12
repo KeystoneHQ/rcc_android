@@ -31,6 +31,10 @@ impl RCC {
             Some(RequestData::BlockChainRequest(params)) => {
                 self.parse(command.request_id, params)
             }
+            Some(RequestData::TestCompute(params)) => {
+                let a = processors::test_compute::test_bip39();
+                CommandResponse::success(command.request_id, a)
+            }
             None => {
                 CommandResponse::error(command.request_id, "Request is not supported".to_string())
             }

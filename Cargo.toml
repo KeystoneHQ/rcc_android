@@ -12,16 +12,17 @@ crate-type = ["cdylib"]
 
 [dependencies]
 prost = "0.8"
-rcc_signer = {git = "ssh://git@github.com/KeystoneHQ/rust-crypto-core.git", tag = "rcc_signer@0.2.0"}
+rcc_signer = {git = "https://github.com/KeystoneHQ/rust-crypto-core.git", tag = "rcc_signer@0.2.0"}
 hex = "0.4.3"
 thiserror="1.0"
 rcc-near="0.1.1"
 rcc-trait-chain="0.1.0"
 rcc-solana = "0.3.1"
-rcc_polkadot = {git = "ssh://git@github.com/KeystoneHQ/rust-crypto-core.git", tag = "rcc_polkadot@0.1.1"}
+rcc_polkadot = {git = "https://github.com/KeystoneHQ/rust-crypto-core.git", tag = "rcc_polkadot@0.1.1"}
 rcc-aptos = "0.1.0"
 rcc-cosmos = "0.1.0"
-rcc-arweave = {git = "ssh://git@github.com/KeystoneHQ/rust-crypto-core.git", tag = "rcc-arweave@0.1.0"}
+rcc-arweave = {git = "https://github.com/KeystoneHQ/rust-crypto-core.git", tag = "rcc-arweave@0.1.0"}
+bip39="2.0.0"
 #logging
 log="*"
 log-panics = "*"

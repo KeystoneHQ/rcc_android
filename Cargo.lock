@@ -339,6 +339,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "bip39"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "93f2635620bf0b9d4576eb7bb9a38a55df78bd1205d26fa994b25911a69f212f"
+dependencies = [
+ "bitcoin_hashes",
+ "serde",
+ "unicode-normalization",
+]
+
+[[package]]
+name = "bitcoin_hashes"
+version = "0.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "90064b8dee6815a6470d60bad07bbbaee885c0e12d04177138fa3291a01b7bc4"
+
+[[package]]
 name = "bitflags"
 version = "1.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3059,7 +3076,7 @@ dependencies = [
 [[package]]
 name = "rcc-arweave"
 version = "0.1.0"
-source = "git+ssh://git@github.com/KeystoneHQ/rust-crypto-core.git?tag=rcc-arweave@0.1.0#207c83539c05cf35bb25b8e82888c4095854efdc"
+source = "git+https://github.com/KeystoneHQ/rust-crypto-core.git?tag=rcc-arweave@0.1.0#207c83539c05cf35bb25b8e82888c4095854efdc"
 dependencies = [
  "base64 0.13.1",
  "hex",
@@ -3134,6 +3151,7 @@ name = "rcc_android"
 version = "0.1.0"
 dependencies = [
  "android_logger",
+ "bip39",
  "flapigen",
  "hex",
  "jni-sys",
@@ -3156,7 +3174,7 @@ dependencies = [
 [[package]]
 name = "rcc_polkadot"
 version = "0.1.0"
-source = "git+ssh://git@github.com/KeystoneHQ/rust-crypto-core.git?tag=rcc_polkadot@0.1.1#da132115fa587a4aacbdf149420b79e79235a5d9"
+source = "git+https://github.com/KeystoneHQ/rust-crypto-core.git?tag=rcc_polkadot@0.1.1#da132115fa587a4aacbdf149420b79e79235a5d9"
 dependencies = [
  "db_handling",
  "definitions",
@@ -3172,7 +3190,7 @@ dependencies = [
 [[package]]
 name = "rcc_signer"
 version = "0.2.0"
-source = "git+ssh://git@github.com/KeystoneHQ/rust-crypto-core.git?tag=rcc_signer@0.2.0#207c83539c05cf35bb25b8e82888c4095854efdc"
+source = "git+https://github.com/KeystoneHQ/rust-crypto-core.git?tag=rcc_signer@0.2.0#207c83539c05cf35bb25b8e82888c4095854efdc"
 dependencies = [
  "base64 0.3.1",
  "bs58",

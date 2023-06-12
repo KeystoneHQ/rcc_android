@@ -1,0 +1,9 @@
+syntax = "proto3";
+package abi;
+
+option java_package = "com.keystone.cold.cryptocore";
+option java_outer_classname = "TestComputeProtoc";
+
+message TestComputeRequest {
+  uint32 seed_id = 1;
+}

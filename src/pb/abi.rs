@@ -206,10 +206,15 @@ pub struct GetRsaPublicKeyRequest {
     pub port_name: ::prost::alloc::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TestComputeRequest {
+    #[prost(uint32, tag="1")]
+    pub seed_id: u32,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommandRequest {
     #[prost(uint32, tag="1")]
     pub request_id: u32,
-    #[prost(oneof="command_request::RequestData", tags="2, 3, 4")]
+    #[prost(oneof="command_request::RequestData", tags="2, 3, 4, 5")]
     pub request_data: ::core::option::Option<command_request::RequestData>,
 }
 /// Nested message and enum types in `CommandRequest`.
@@ -222,6 +227,8 @@ pub mod command_request {
         BlockChainRequest(super::BlockChainRequest),
         #[prost(message, tag="4")]
         GetRsaPublicKeyRequest(super::GetRsaPublicKeyRequest),
+        #[prost(message, tag="5")]
+        TestCompute(super::TestComputeRequest),
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
