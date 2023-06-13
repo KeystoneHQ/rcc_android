@@ -37,3 +37,6 @@ jni-sys = "*"
 prost-build = "0.8"
 flapigen = "0.6.0-pre9"
 rifgen = "*"
+
+[net]
+git-fetch-with-cli = true
