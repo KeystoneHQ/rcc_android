@@ -175,7 +175,7 @@ pub mod arweave {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Cardano {
-    #[prost(oneof="cardano::Method", tags="1, 2")]
+    #[prost(oneof="cardano::Method", tags="1, 2, 3, 4")]
     pub method: ::core::option::Option<cardano::Method>,
 }
 /// Nested message and enum types in `Cardano`.
@@ -186,6 +186,10 @@ pub mod cardano {
         ParseTransaction(super::ParseCardanoTransaction),
         #[prost(message, tag="2")]
         GenerateAddress(super::GenerateAddress),
+        #[prost(message, tag="3")]
+        ComposeWitnessSet(super::ComposeWitnessSet),
+        #[prost(message, tag="4")]
+        DerivePublicKey(super::DerivePublicKey),
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -233,6 +237,25 @@ pub struct GenerateAddress {
     pub index: u32,
     #[prost(uint32, tag="3")]
     pub t: u32,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ComposeWitnessSet {
+    #[prost(message, repeated, tag="1")]
+    pub signatures: ::prost::alloc::vec::Vec<CardanoSignature>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CardanoSignature {
+    #[prost(string, tag="1")]
+    pub public_key: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub signature: ::prost::alloc::string::String,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DerivePublicKey {
+    #[prost(string, tag="1")]
+    pub xpub: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub sub_path: ::prost::alloc::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BlockChainRequest {

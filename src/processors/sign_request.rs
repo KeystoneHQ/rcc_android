@@ -18,6 +18,15 @@ pub fn process(params: SignRequest) -> Result<String, SignError> {
     let mut signing_option: Option<SigningOption> = None;
     let algo = match params.algo {
         0 => SigningAlgorithm::Secp256k1,
+        2 => {
+            let option: HashMap<String, String> = params.signing_option;
+            if let Some(bool) = option.get("sign_ada") {
+                if bool.eq("true") {
+                    signing_option = Some(SigningOption::ADA)
+                }
+            }
+            SigningAlgorithm::Ed25519
+        }
         3 => {
             let option: HashMap<String, String> = params.signing_option;
             if let Some(salt_len) = option.get("salt_len") {
