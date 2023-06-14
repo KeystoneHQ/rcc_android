@@ -8,6 +8,8 @@ message Cardano {
   oneof method {
     ParseCardanoTransaction parse_transaction = 1;
     GenerateAddress generate_address = 2;
+    ComposeWitnessSet compose_witness_set = 3;
+    DerivePublicKey derive_public_key = 4;
   }
 }
 
@@ -38,4 +40,18 @@ message GenerateAddress {
   string xpub = 1;
   uint32 index = 2;
   uint32 t = 3;
+}
+
+message ComposeWitnessSet {
+  repeated CardanoSignature signatures = 1;
+}
+
+message CardanoSignature {
+  string public_key = 1;
+  string signature = 2;
+}
+
+message DerivePublicKey {
+  string xpub = 1;
+  string sub_path = 2;
 }

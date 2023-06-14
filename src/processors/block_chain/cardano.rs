@@ -1,8 +1,8 @@
 use super::error::ParseError;
 use crate::pb::abi::cardano::Method;
-use crate::pb::abi::{Cardano, GenerateAddress, ParseCardanoTransaction};
+use crate::pb::abi::{Cardano, ComposeWitnessSet, DerivePublicKey, GenerateAddress, ParseCardanoTransaction};
 use bitcoin::bip32::{DerivationPath, IntoDerivationPath};
-use rcc_cardano::structs::{CardanoCertKey, CardanoUtxo, ParseContext};
+use rcc_cardano::structs::{CardanoCertKey, CardanoSignarure, CardanoUtxo, ParseContext};
 use rcc_cardano::transaction::{parse_tx, parse_tx_to_json};
 use rcc_cardano::address;
 use std::str::FromStr;
@@ -16,6 +16,12 @@ pub fn process(data: Cardano) -> Result<String, ParseError> {
         }
         Some(Method::GenerateAddress(request)) => {
             generate_address(request)
+        }
+        Some(Method::DerivePublicKey(request)) => {
+            derive_public_key(request)
+        }
+        Some(Method::ComposeWitnessSet(request)) => {
+            compose_witness_set(request)
         }
         _ => Err(ParseError::CardanoParseError("message type is not supported".to_string()))
     }
@@ -71,4 +77,17 @@ fn generate_address(request: GenerateAddress) -> Result<String, ParseError> {
     };
     let address = derive_address(xpub, index, address_type, 1)?;
     Ok(address)
+}
+
+fn derive_public_key(request: DerivePublicKey) -> Result<String, ParseError> {
+    address::derive_public_key(request.xpub, request.sub_path).map_err(|e| ParseError::CardanoParseError(e.to_string()))
+}
+
+fn compose_witness_set(request: ComposeWitnessSet) -> Result<String, ParseError> {
+    let signatures = request.signatures.iter().map(|v| {
+        let public_key = hex::decode(v.public_key.clone()).map_err(|e| ParseError::CardanoParseError(e.to_string()))?;
+        let signature = hex::decode(v.signature.clone()).map_err(|e| ParseError::CardanoParseError(e.to_string()))?;
+        Ok(CardanoSignarure::new(public_key, signature))
+    }).collect::<Result<Vec<CardanoSignarure>, ParseError>>()?;
+    rcc_cardano::transaction::compose_witness_set(signatures).map_err(|e| ParseError::CardanoParseError(e.to_string()))
 }
