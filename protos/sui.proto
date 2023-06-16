@@ -1,0 +1,14 @@
+syntax = "proto3";
+package abi;
+
+option java_package = "com.keystone.cold.cryptocore";
+option java_outer_classname = "SuiProtoc";
+
+import 'common.proto';
+
+message Sui {
+  oneof method {
+    ParseTransaction parse_transaction = 1;
+    ParseTransaction parse_message = 2;
+  }
+}

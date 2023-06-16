@@ -12,6 +12,8 @@ pub enum ParseError {
     ChainParseError(String, String),
     #[error("aptos parse failed, reason: `{0}`")]
     AptosParseError(String),
+    #[error("sui parse failed, reason: `{0}`")]
+    SuiParseError(String),
     #[error("cosmos parse failed, reason: `{0}`")]
     CosmosParseError(String),
     #[error("arweave parse failed, reason: `{0}`")]

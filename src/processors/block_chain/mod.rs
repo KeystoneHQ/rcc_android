@@ -10,6 +10,7 @@ mod aptos;
 mod cosmos;
 mod arweave;
 mod cardano;
+mod sui;
 
 pub fn process(params: BlockChainRequest) -> Result<String, ParseError> {
     match params.chain {
@@ -20,6 +21,7 @@ pub fn process(params: BlockChainRequest) -> Result<String, ParseError> {
         Some(Chain::Cosmos(cosmos)) => cosmos::process(cosmos),
         Some(Chain::Arweave(arweave)) => arweave::process(arweave),
         Some(Chain::Cardano(cardano)) => cardano::process(cardano),
+        Some(Chain::Sui(sui)) => sui::process(sui),
         None => {
             unimplemented!()
         }
