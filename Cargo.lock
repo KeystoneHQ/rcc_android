@@ -3365,7 +3365,7 @@ dependencies = [
 [[package]]
 name = "rcc_signer"
 version = "0.1.1"
-source = "git+ssh://git@github.com/KeystoneHQ/rust-crypto-core.git?tag=rcc_signer@0.3.1#1d0380c884414d2d344eece4f66f174fd1d38373"
+source = "git+ssh://git@github.com/KeystoneHQ/rust-crypto-core.git?tag=rcc_signer@0.3.2#9d27580d71156a7282779212af9baf25b6ee7644"
 dependencies = [
  "base64 0.3.1",
  "bitcoin",
