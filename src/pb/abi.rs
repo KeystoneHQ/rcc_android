@@ -148,6 +148,21 @@ pub mod aptos {
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Sui {
+    #[prost(oneof="sui::Method", tags="1, 2")]
+    pub method: ::core::option::Option<sui::Method>,
+}
+/// Nested message and enum types in `Sui`.
+pub mod sui {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Method {
+        #[prost(message, tag="1")]
+        ParseTransaction(super::ParseTransaction),
+        #[prost(message, tag="2")]
+        ParseMessage(super::ParseTransaction),
+    }
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Cosmos {
     #[prost(oneof="cosmos::Method", tags="1")]
     pub method: ::core::option::Option<cosmos::Method>,
@@ -259,7 +274,7 @@ pub struct DerivePublicKey {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BlockChainRequest {
-    #[prost(oneof="block_chain_request::Chain", tags="1, 2, 3, 4, 5, 6, 7")]
+    #[prost(oneof="block_chain_request::Chain", tags="1, 2, 3, 4, 5, 6, 7, 8")]
     pub chain: ::core::option::Option<block_chain_request::Chain>,
 }
 /// Nested message and enum types in `BlockChainRequest`.
@@ -280,6 +295,8 @@ pub mod block_chain_request {
         Arweave(super::Arweave),
         #[prost(message, tag="7")]
         Cardano(super::Cardano),
+        #[prost(message, tag="8")]
+        Sui(super::Sui),
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]

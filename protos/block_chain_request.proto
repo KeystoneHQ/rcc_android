@@ -9,6 +9,7 @@ import "solana.proto";
 import "near.proto";
 import "polkadot.proto";
 import "aptos.proto";
+import "sui.proto";
 import "cosmos.proto";
 import "arweave.proto";
 import "cardano.proto";
@@ -22,7 +23,6 @@ message BlockChainRequest {
     Cosmos cosmos = 5;
     Arweave arweave = 6;
     Cardano cardano = 7;
+    Sui sui = 8;
   }
 }
-
-
