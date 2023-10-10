@@ -75,7 +75,7 @@ fn generate_address(request: GenerateAddress) -> Result<String, ParseError> {
         2 => AddressType::Enterprise,
         _ => return Err(ParseError::CardanoParseError("Invalid Address type".to_string()))
     };
-    let address = derive_address(xpub, index, address_type, 1)?;
+    let address = derive_address(xpub, 0, index, address_type, 1)?;
     Ok(address)
 }
 

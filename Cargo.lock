@@ -3534,7 +3534,7 @@ dependencies = [
 [[package]]
 name = "rcc_cardano"
 version = "0.1.0"
-source = "git+ssh://git@github.com/KeystoneHQ/rust-crypto-core.git?tag=rcc_cardano@0.1.6#130968d0a720bdf8d14ab2565eb228241fa794c8"
+source = "git+ssh://git@github.com/KeystoneHQ/rust-crypto-core.git?tag=rcc_cardano@0.1.8#a0dc9f892e6f31fe80eab4271b8c3d428267031f"
 dependencies = [
  "bitcoin",
  "cardano-serialization-lib",
