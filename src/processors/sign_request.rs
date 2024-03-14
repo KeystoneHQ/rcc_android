@@ -1,6 +1,6 @@
 use crate::processors::error::SignError;
 use crate::{CommandResponse, SignRequest};
-use rcc_signer::SigningOption;
+use rcc_signer::{RSASignType, SigningOption};
 use rcc_signer::{Signer, SigningAlgorithm};
 use std::collections::HashMap;
 use std::iter::Map;
@@ -29,14 +29,23 @@ pub fn process(params: SignRequest) -> Result<String, SignError> {
         }
         3 => {
             let option: HashMap<String, String> = params.signing_option;
+            let mut parsed_salt_len: i32 = 0;
+            let mut sign_type = RSASignType::Common;
             if let Some(salt_len) = option.get("salt_len") {
-                let parsed_salt_len: i32 = salt_len.parse().map_err(|_| {
+                parsed_salt_len = salt_len.parse().map_err(|_| {
                     SignError::ParseSigningOptionFailed("parse salt_len to int failed".to_string())
                 })?;
-                signing_option = Some(SigningOption::RSA {
-                    salt_len: parsed_salt_len,
-                })
             }
+            if let Some(st) = option.get("sign_type") {
+                match st.as_str() {
+                    "ar_message" => sign_type = RSASignType::ARMessage,
+                    _ => {}
+                }
+            }
+            signing_option = Some(SigningOption::RSA {
+                salt_len: parsed_salt_len,
+                sign_type,
+            });
             SigningAlgorithm::RSA
         }
         _ => {
